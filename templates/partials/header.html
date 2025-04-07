@@ -1,0 +1,32 @@
+<div class="header-wrapper header-wrapper-home">
+    <!-- ******HEADER****** --> 
+    <header id="header" class="header fixed-top">  
+        <div class="container">       
+            <h1 class="logo">
+                <a href="{% url 'index' %}"><span class="highlight">Dev</span>Studio</a>
+            </h1><!--//logo-->
+            <nav class="main-nav navbar navbar-expand-md navbar-dark">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbar-collapse" class="navbar-collapse collapse justify-content-end">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'work' %}">Work <i class="fas fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'work' %}">Our Work</a></li>
+                                <li><a class="dropdown-item" href="{% url 'case-study-1' %}">Single Case Study 1</a></li>
+                                <li><a class="dropdown-item" href="{% url 'case-study-2' %}">Single Case Study 2</a></li>
+                                <li><a class="dropdown-item" href="{% url 'blog-post' pk=1 %}">Single Blog Post</a></li>
+                                <li><a class="dropdown-item" href="{% url '404' %}">404 Page</a></li>         
+                            </ul>
+                        </li><!--//dropdown--> 
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>                                              
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+                        <li class="nav-item last"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->
+        </div><!--//container-->
+    </header><!--//header-->

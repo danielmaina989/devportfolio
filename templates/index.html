@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block title %}Home | DevPortfolio{% endblock %}
+{% block content %}
+<body class="home-page">
+    <div class="bg-carousel-wrapper">
+        <div id="bg-carousel" class="bg-carousel carousel slide carousel-fade" data-bs-ride="carousel"
+            data-bs-interval="6000">
+            <div class="carousel-inner">
+                <div class="carousel-item active slide slide-1"></div>
+                <div class="carousel-item slide slide-2"></div>
+                <div class="carousel-item slide slide-3"></div>
+            </div>
+        </div><!--//bg-carousel-->
+    </div><!--//bg-carousel-wrapper-->
+    <section id="home-promo" class="home-promo section">
+        <div class="container text-center">
+            <h2 class="title">
+                <span class="upper">We build</span>
+                <span class="middle">Web and Mobile Apps</span>
+                <span class="bottom">for startups and agencies</span>
+            </h2>
+            <button class="btn btn-cta btn-cta-primary" type="button" data-bs-toggle="modal"
+                data-bs-target="#modal-contact" data-bs-backdrop="static">Talk to us</button>
+        </div><!--//container-->
+    </section><!--//promo-->
+    </div><!--//header-wrapper-->
+
+    <!-- ******Why Section****** -->
+    <section id="who" class="who section">
+        <div class="container text-center">
+            <h2 class="title text-center">Who We Are</h2>
+            <p class="intro text-center">We are a small team of web developers and designers based in XYZ. We are
+                specialised in JavaScript, AngularJS and Python. </p>
+            <div class="row benefits text-center">
+                <div class="item col-lg-3 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <!--//You can replace the SVG icon below to your preferred Bootstrap icon - https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                        </svg>
+                        <h3 class="sub-title">Skilled team</h3>
+                        <div class="desc">
+                            <p>Tell your potential client why they should choose your service and how you are different
+                                from your competitors. Lorem ipsum dolor sit amet. </p>
+                        </div>
+                    </div>
+                </div><!--//item-->
+                <div class="item col-lg-3 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <!--//You can replace the SVG icon below to your preferred Bootstrap icon - https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z" />
+                            <path fill-rule="evenodd"
+                                d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z" />
+                        </svg>
+                        <h3 class="sub-title">Agile approach</h3>
+                        <div class="desc">
+                            <p>You can change the icon above to any of the 1000+ <a class="text-link"
+                                    href="https://icons.getbootstrap.com/">Bootstrap SVG icons</a> available. Lorem
+                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-lg-3 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <!--//You can replace the SVG icon below to your preferred Bootstrap icon - https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-code"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" />
+                            <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z" />
+                            <path fill-rule="evenodd"
+                                d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
+                        </svg>
+                        <h3 class="sub-title">High quality code</h3>
+                        <div class="desc">
+                            <p>Morbi sit amet interdum lorem. Donec vel pretium sem, bibendum lobortis ipsum. Fusce
+                                molestie eros eget tortor convallis aliquam. </p>
+                        </div>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-lg-3 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <!--//You can replace the SVG icon below to your preferred Bootstrap icon - https://icons.getbootstrap.com/ -->
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-down" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z" />
+                            <path fill-rule="evenodd"
+                                d="M14.39 9.041l-4.349-5.436L7 6.646 3.354 3l-.708.707L7 8.061l2.959-2.959 3.65 4.564.781-.625z" />
+                            <path fill-rule="evenodd"
+                                d="M10 9.854a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-1 0v3.5h-3.5a.5.5 0 0 0-.5.5z" />
+                        </svg>
+
+                        <h3 class="sub-title">No overheads</h3>
+                        <div class="desc">
+                            <p>Proin ornare dolor elementum mattis scelerisque. Suspendisse non scelerisque elit. Morbi
+                                ac nibh finibus nibh ultricies placerat.</p>
+                        </div>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+            </div><!--//row-->
+            <a class="btn btn-cta btn-cta-secondary" href="about.html">More about us</a>
+        </div><!--//container-->
+    </section><!--//who-->
+
+    <!-- ******Latest work section****** -->
+<section id="latest-work" class="latest-work section">
+    <div class="container-fluid text-center">
+        <h2 class="title text-center">Our Latest Work</h2>
+        <div id="work-slider" class="items work-slider">
+            <!-- Item 1 -->
+            <div class="item item-1">
+                <div class="row">
+                    <figure class="figure-container col-lg-6 col-12">
+                        <a href="case-study-1.html" target="_blank"></a>
+                    </figure>
+                    <div class="content col-lg-6 col-12">
+                        <div class="content-inner">
+                            <h3 class="project-title"><a class="text-link" href="case-study-1.html">Case Study One Heading</a></h3>
+                            <ul class="meta list-unstyled">
+                                <li><strong class="me-1">Client:</strong> Google</li>
+                                <li><strong class="me-1">What we did:</strong> SaaS development, UX design</li>
+                            </ul><!--//meta-->
+                            <div class="desc">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales dolor ut ligula faucibus, nec mattis nibh eleifend. Duis et enim at lacus pharetra mollis molestie nec magna. Maecenas tristique laoreet tristique...</p>
+                            </div><!--//desc-->
+                            <p class="link mb-2"><i class="fas fa-briefcase"></i> <a class="more-link text-link" href="case-study-1.html">Read full case study</a></p>
+                            <p class="link"><i class="fas fa-external-link-alt"></i> <a class="site-link text-link" href="https://themes.3rdwavemedia.com/" target="_blank">Website link</a></p>
+                        </div><!--//content-inner-->
+                    </div><!--//content-->
+                </div><!--//row-->
+            </div><!--//item-->
+            
+            <!-- Item 2 -->
+            <div class="item item-2">
+                <div class="row">
+                    <figure class="figure-container col-lg-6 col-12">
+                        <a class="img-link" href="case-study-2.html" target="_blank"></a>
+                    </figure>
+                    <div class="content col-lg-6 col-12">
+                        <div class="content-inner">
+                            <h3 class="project-title"><a class="text-link" href="case-study-2.html">Case Study Two Heading</a></h3>
+                            <ul class="meta list-unstyled">
+                                <li><strong class="me-1">Client:</strong> Amazon</li>
+                                <li><strong class="me-1">What we did:</strong> App development</li>
+                            </ul><!--//meta-->
+                            <div class="desc">
+                                <p>Mauris in vestibulum ex. Donec vel malesuada tortor. Etiam consequat semper pulvinar. Integer sit amet felis nisl. Proin leo metus, volutpat vel fringilla vel, faucibus et mi. Duis finibus erat erat, quis mollis...</p>
+                            </div><!--//desc-->
+                            <p class="link mb-2"><i class="fas fa-briefcase"></i> <a class="more-link text-link" href="case-study-2.html">Read full case study</a></p>
+                            <p class="link"><i class="fas fa-external-link-alt"></i> <a class="site-link text-link" href="https://themes.3rdwavemedia.com/" target="_blank">Website link</a></p>
+                        </div><!--//content-inner-->
+                    </div><!--//content-->
+                </div><!--//row-->
+            </div><!--//item-->
+            
+            <!-- Item 3 -->
+            <div class="item item-3">
+                <div class="row">
+                    <figure class="figure-container col-lg-6 col-12">
+                        <a class="img-link" href="case-study-3.html" target="_blank"></a>
+                    </figure>
+                    <div class="content col-lg-6 col-12">
+                        <div class="content-inner">
+                            <h3 class="project-title"><a class="text-link" href="case-study-3.html">Case Study Three Heading</a></h3>
+                            <ul class="meta list-unstyled">
+                                <li><strong class="me-1">Client:</strong> Dropbox</li>
+                                <li><strong class="me-1">What we did:</strong> Site design &amp; development</li>
+                            </ul><!--//meta-->
+                            <div class="desc">
+                                <p>Sed ornare suscipit risus, sed elementum justo porta ac. Duis ultricies lobortis nibh sed facilisis. Etiam eu leo sapien. Integer gravida at urna ac bibendum. Nullam eu orci at felis fermentum lobortis...</p>
+                            </div><!--//desc-->
+                            <p class="link mb-2"><i class="fas fa-briefcase"></i> <a class="more-link text-link" href="case-study-3.html">Read full case study</a></p>
+                            <p class="link"><i class="fas fa-external-link-alt"></i> <a class="site-link text-link" href="https://themes.3rdwavemedia.com/" target="_blank">Website link</a></p>
+                        </div><!--//content-inner-->
+                    </div><!--//content-->
+                </div><!--//row-->
+            </div><!--//item-->
+        </div><!--//work-slider-->
+        <a class="btn btn-cta btn-cta-secondary" href="work.html">View all case studies</a>
+    </div><!--container-fluid-->
+</section><!--//latest-work-->
+
+
+<!-- ******Testimonials Section****** -->
+<section id="testimonials" class="testimonials section">
+    <div class="container">
+        <h2 class="title text-center">Testimonials</h2>
+        <p class="intro text-center">Don’t just take our word for it – see what our clients are saying</p>
+        <div class="row">
+            <div class="item col-lg-6 col-12 px-5">
+                <div class="item-inner">
+                    <div class="quote-container">
+                        <i class="fas fa-quote-left"></i>
+                        <blockquote class="quote">We had great experience working with Phasellus ut cursus tellus.
+                            Etiam ullamcorper varius diam, nec consequat dolor gravida non. Nullam commodo feugiat
+                            arcu, ut scelerisque nisl vulputate eget. Cras a euismod elit.
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-->
+                    <div class="meta row">
+                        <div class="profile col-8">
+                            <!-- Corrected image path using {% load static %} -->
+                            <img src="{% static 'images/client/client-profile-1.png' %}" alt="" />
+                            <p class="name">Katherine Hamilton<br />
+                                <span class="source-title">Product Manager</span>
+                            </p>
+                        </div><!--//profile-->
+                        <div class="client-logo col align-self-center">
+                            <!-- Corrected image path using {% load static %} -->
+                            <img src="{% static 'images/client/client-logo-1.png' %}" alt="" />
+                        </div><!--//client-logo-->
+                    </div><!--//meta-->
+                </div><!--//item-inner-->
+            </div><!--//item-->
+
+            <div class="item col-lg-6 col-12 px-5">
+                <div class="item-inner">
+                    <div class="quote-container">
+                        <i class="fas fa-quote-left"></i>
+                        <blockquote class="quote">Cras condimentum erat vel quam dignissim, eu venenatis velit
+                            porta. Praesent fermentum, mi sit amet mollis fringilla, ex risus condimentum mauris, at
+                            dapibus ipsum turpis non ipsum.
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-->
+                    <div class="meta row">
+                        <div class="profile col-8">
+                            <img src="{% static 'images/client/client-profile-2.png' %}" alt="" />
+                            <p class="name">Aaron Brown<br />
+                                <span class="source-title">Marketing Director</span>
+                            </p>
+                        </div><!--//profile-->
+                        <div class="client-logo col align-self-center">
+                            <img src="{% static 'images/client/client-logo-2.png' %}" alt="" />
+                        </div><!--//client-logo-->
+                    </div><!--//meta-->
+                </div><!--//item-inner-->
+            </div><!--//item-->
+
+            <div class="clearfix"></div>
+
+            <div class="item col-lg-6 col-12 px-5">
+                <div class="item-inner">
+                    <div class="quote-container">
+                        <i class="fas fa-quote-left"></i>
+                        <blockquote class="quote">Pellentesque nec maximus justo, a ultrices ligula. Duis
+                            sollicitudin suscipit arcu eget interdum. Nullam et porttitor sem, id iaculis eros. Sed
+                            feugiat leo et ligula pulvinar, et lobortis velit pretium.
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-->
+                    <div class="meta row">
+                        <div class="profile col-8">
+                            <img src="{% static 'images/client/client-profile-3.png' %}" alt="" />
+                            <p class="name">Phillip Perry<br />
+                                <span class="source-title">Product Manager</span>
+                            </p>
+                        </div><!--//profile-->
+                        <div class="client-logo col align-self-center">
+                            <img src="{% static 'images/client/client-logo-3.png' %}" alt="" />
+                        </div><!--//client-logo-->
+                    </div><!--//meta-->
+                </div><!--//item-inner-->
+            </div><!--//item-->
+
+            <div class="item col-lg-6 col-12 px-5">
+                <div class="item-inner">
+                    <div class="quote-container">
+                        <i class="fas fa-quote-left"></i>
+                        <blockquote class="quote">We are impressed by lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit. Maecenas tellus nisi, maximus vel risus vel, fermentum faucibus magna.
+                            Aliquam sed aliquet eros. Nunc nec aliquet ligula.
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-->
+                    <div class="meta row">
+                        <div class="profile col-8">
+                            <img src="{% static 'images/client/client-profile-4.png' %}" alt="" />
+                            <p class="name">Victoria Simmons<br />
+                                <span class="source-title">Product Designer</span>
+                            </p>
+                        </div><!--//profile-->
+                        <div class="client-logo col align-self-center">
+                            <img src="{% static 'images/client/client-logo-4.png' %}" alt="" />
+                        </div><!--//client-logo-->
+                    </div><!--//meta-->
+                </div><!--//item-inner-->
+            </div><!--//item-->
+        </div><!--//row-->
+    </div><!--//container-->
+</section><!--//testimonials-->
+<!-- ******Logos Section****** -->
+<section id="logos" class="logos section">
+    <div class="container text-center">
+        <h2 class="title">Who we have worked with</h2>
+        <ul class="logo-list list-inline row">
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-1.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-2.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-3.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-4.png' %}" alt="" /></a></li>
+        </ul><!--//logo-list-->
+        <ul class="logo-list list-inline row last">
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-5.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-6.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-7.png' %}" alt="" /></a></li>
+            <li class="col-md-3 col-6"><a href="#"><img class="img-fluid" src="{% static 'images/logos/logo-8.png' %}" alt="" /></a></li>
+        </ul><!--//logos-list-->
+    </div><!--//container-->
+</section><!--//logos-->
+
+
+    <!-- ******CTA Section****** -->
+    <section id="cta-section" class="cta-section section text-center home-cta-section">
+        <div class="container">
+            <h2 class="title">Want to have a quick chat?</h2>
+            <p class="phone contact-info">
+                <span class="intro">We are only a phone call away</span>
+                <span class="info"><a class="text-link" href="tel:+08001234567">0800 123 4567</a></span>
+            </p><!--//phone-->
+            <p class="email contact-info">
+                <span class="intro">You can also email us</span>
+                <span class="info"><a class="text-link"
+                        href="mailto:hello@yourdevstudio.com">hello@yourdevstudio.com</a></span>
+            </p><!--//phone-->
+        </div><!--//container-->
+    </section><!--//cta-section-->
+
+    <!-- ******Latest blog Section****** -->
+    <section id="latest-blog" class="latest-blog section">
+        <div class="container">
+            <h2 class="title text-center">Latest Blog Posts</h2>
+            <div class="row justify-content-center">
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-1.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">DevStudio Helps XYZ
+                                    Launch</a></h3>
+                            <div class="desc">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales dolor ut
+                                    ligula faucibus, nec mattis nibh eleifend. Duis et enim at lacus pharetra mollis
+                                    molestie nec magna. Maecenas tristique laoreet tristique.</p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-2.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">Free Bootstrap Themes</a>
+                            </h3>
+                            <div class="desc">
+                                <p>Mauris libero leo, dapibus a congue ut, mollis sed nulla. Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit. Ut tempus augue nec nulla ultricies, <a
+                                        class="text-link" href="http://themes.3rdwavemedia.com/"
+                                        target="_blank">Download now</a> vitae tincidunt lacus scelerisque.</p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-3.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">DevStudio Team Lorem
+                                    Ipsum</a></h3>
+                            <div class="desc">
+                                <p>In vel mauris consequat, ullamcorper diam id, eleifend tellus. Phasellus elementum
+                                    facilisis eleifend. Nullam imperdiet odio massa, et blandit augue porta vehicula.
+                                </p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-4.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">Our Consectetur
+                                    Adipiscing</a></h3>
+                            <div class="desc">
+                                <p>Aenean eget molestie ipsum, in commodo felis. Sed vitae enim est. Nunc at eros id
+                                    purus vulputate elementum in vel nisi. Donec tempus turpis et viverra semper. </p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-5.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">Vitae Condimentum</a></h3>
+                            <div class="desc">
+                                <p>Aenean eget molestie ipsum, in commodo felis. Sed vitae enim est. Nunc at eros id
+                                    purus vulputate elementum in vel nisi. Donec tempus turpis et viverra semper. </p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-xl-4 col-md-6 col-12">
+                    <div class="item-inner rounded">
+                        <figure class="figure rounded-top">
+                            <a href="blog-post.html"><img class="img-fluid" src="assets/images/blog/blog-thumb-6.jpg"
+                                    alt="" /></a>
+                        </figure>
+                        <div class="content-wrapper text-center">
+                            <h3 class="sub-title"><a class="text-link" href="blog-post.html">How To Lorem Ipsum</a></h3>
+                            <div class="desc">
+                                <p>Aenean eget molestie ipsum, in commodo felis. Sed vitae enim est. Nunc at eros id
+                                    purus vulputate elementum in vel nisi. Donec tempus turpis et viverra semper. </p>
+                            </div><!--//desc-->
+                        </div><!--//content-wrapper text-center-->
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//latest-blog-->
+
+    <!-- Main Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/vanilla-back-to-top.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+    <!-- Tiny Slider -->
+    <script src="assets/plugins/tiny-slider/min/tiny-slider.js"></script>
+    <script src="assets/js/tinyslider-custom.js"></script>
+
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
+
+    {% endblock %}

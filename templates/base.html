@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Extramile Plus</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">  
+
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome JS -->
+    <script defer src="{% static 'fontawesome/js/all.js' %}"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="{% static 'plugins/tiny-slider/tiny-slider.css' %}">
+    
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{% static 'css/theme-1.css' %}">
+</head>
+<body>
+
+    {% include 'partials/header.html' %}
+
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+    <!-- Scripts -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Main Javascript -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'plugins/popper.min.js' %}"></script>
+        <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'plugins/vanilla-back-to-top.min.js' %}"></script>
+        <script src="{% static 'plugins/tiny-slider/min/tiny-slider.js' %}"></script>
+        <script src="{% static 'js/tinyslider-custom.js' %}"></script>
+        <script src="{% static 'js/demo/style-switcher.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+
+        
+
+
+
+
+</body>
+
+</html>
