@@ -1,3 +1,4 @@
+{%load static%}
 <!-- ******FOOTER****** --> 
 <footer class="footer">
     <div class="footer-content">
@@ -7,10 +8,10 @@
                     <div class="footer-col-inner">
                         <h3 class="sub-title">Quick Links</h3>
                         <ul class="list-unstyled">
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="work.html">Our work</a></li>
-                            <li><a href="contact.html">Contact</a></li>                                
-                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="{% url 'about' %}">About us</a></li>
+                            <li><a href="{% url 'work' %}">Our work</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>                                
+                            <li><a href="{% url 'blog:blog_list' %}">Blog</a></li>
                             <li><a href="#">Privacy policy</a></li>
                             <li><a href="#">Terms &amp; Conditions</a></li>
                         </ul>
@@ -21,7 +22,7 @@
                         <h3 class="sub-title">Latest From Our Blog</h3>
                         <div class="item">
                             <figure class="figure">
-                                <img class="img-fluid rounded" src="assets/images/blog/blog-tiny-thumb-1.jpg" alt="" />
+                                <img class="img-fluid rounded" src="{% static 'images/blog/blog-tiny-thumb-1.jpg' %}" alt="" />
                             </figure>
                             <div class="content">
                                 <h4 class="post-title"><a href="blog-post.html">DevStudio helps XYZ launch</a></h4>
@@ -35,7 +36,7 @@
                         </div>  
                         <div class="item">
                             <figure class="figure">
-                                <img class="img-fluid rounded" src="assets/images/blog/blog-tiny-thumb-2.jpg" alt="" />
+                                <img class="img-fluid rounded" src="{% static 'images/blog/blog-tiny-thumb-2.jpg' %}" alt="" />
                             </figure>
                             <div class="content">
                                 <h4 class="post-title"><a href="blog-post.html">Free Bootstrap Themes</a></h4>

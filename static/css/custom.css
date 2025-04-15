@@ -1,0 +1,6 @@
+/* Add to your theme CSS */
+.content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
