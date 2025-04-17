@@ -4,3 +4,8 @@
     margin: 0 auto;
     padding: 0 1rem;
 }
+.footer-thumb {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: cover;
+}

@@ -20,36 +20,24 @@
                 <div class="footer-col col-lg-6 col-md-8 col-12 blog-col">
                     <div class="footer-col-inner">
                         <h3 class="sub-title">Latest From Our Blog</h3>
+                        {% for post in latest_blogs %}
                         <div class="item">
                             <figure class="figure">
-                                <img class="img-fluid rounded" src="{% static 'images/blog/blog-tiny-thumb-1.jpg' %}" alt="" />
+                                <img class="img-fluid rounded footer-thumb" src="{{ post.image.url }}" alt="{{ post.title }}" />
                             </figure>
                             <div class="content">
-                                <h4 class="post-title"><a href="blog-post.html">DevStudio helps XYZ launch</a></h4>
-                                <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales dolor ut ligula faucibus...</p>
+                                <h4 class="post-title"><a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title }}</a></h4>
+                                <p class="intro">{{ post.excerpt|truncatewords:20 }}</p>
                                 <ul class="meta list-inline">
-                                    <li class="list-inline-item">18 Feb</li>
+                                    <li class="list-inline-item">{{ post.created_at|date:"d M" }}</li>
                                     <li class="list-inline-item">|</li>
-                                    <li class="list-inline-item">James Lee</li>
+                                    <li class="list-inline-item">{{ post.author }}</li>
                                 </ul>
                             </div><!--//content-->
                         </div>  
-                        <div class="item">
-                            <figure class="figure">
-                                <img class="img-fluid rounded" src="{% static 'images/blog/blog-tiny-thumb-2.jpg' %}" alt="" />
-                            </figure>
-                            <div class="content">
-                                <h4 class="post-title"><a href="blog-post.html">Free Bootstrap Themes</a></h4>
-                                <p class="intro">Mauris libero leo, dapibus a congue ut, mollis sed nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus augue nec nulla ultricies...</p>
-                                <ul class="meta list-inline">
-                                    <li class="list-inline-item">21 Dec</li>
-                                    <li class="list-inline-item">|</li>
-                                    <li class="list-inline-item">Vincent Fowler</li>
-                                </ul>
-                            </div><!--//content-->
-                        </div>                                                     
+                        {% endfor %}
                     </div><!--//footer-col-inner-->
-                </div><!--//foooter-col--> 
+                </div><!--//footer-col-->
                 <div class="footer-col col-lg-3 col-12 contact-col">
                     <div class="footer-col-inner">
                         <h3 class="sub-title">Get In Touch</h3>

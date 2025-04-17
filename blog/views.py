@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from .models import BlogPost, Comment
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm
@@ -10,12 +10,11 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 
 
-
-
 class BlogListView(ListView):
     model = BlogPost
     template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
+
 
 class BlogDetailView(DetailView):
     model = BlogPost
@@ -75,5 +74,8 @@ class ReplyCommentView(LoginRequiredMixin, View):
                 messages.success(request, "Reply posted successfully.")
 
         return redirect('blog:blog_detail', slug=parent_comment.post.slug)
+    
 
+
+    
 

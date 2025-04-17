@@ -14,4 +14,5 @@ urlpatterns = [
     path('contact/', ContactView.as_view(), name='contact'),
     path('work/', WorkView.as_view(), name='work'),
     path('404/', NotFoundView.as_view(), name='404'),
+    
 ]
