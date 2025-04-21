@@ -9,3 +9,14 @@
     max-height: 70px;
     object-fit: cover;
 }
+
+/* Ensure the image fits properly within the allocated space */
+.blog-index-img {
+    width: 100%;          /* Make the image take up the full width */
+    height: 250px;        /* Set a fixed height for the image */
+    object-fit: cover;    /* Ensure the image covers the area without distortion */
+    object-position: center; /* Center the image within the area */
+    border-top-left-radius: 5px; /* Optional: match the rounded corners of the item */
+    border-top-right-radius: 5px; /* Optional: match the rounded corners of the item */
+}
+

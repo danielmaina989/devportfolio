@@ -14,9 +14,14 @@ from collections import defaultdict
 
 class HomeView(TemplateView):
     template_name = "index.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get the latest 4 blog posts, ordered by the 'created_at' field
+        context['latest_blog_posts'] = BlogPost.objects.all().order_by('-created_at')[:4]
+        return context
 
 
-from collections import defaultdict
 
 class AboutView(TemplateView):
     template_name = "about.html"

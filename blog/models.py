@@ -13,6 +13,11 @@ class BlogPost(models.Model):
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     published = models.BooleanField(default=False)
 
+
+    def get_excerpt(self, length=150):
+        """Return a truncated version of the content."""
+        return self.content[:length] + '...' if len(self.content) > length else self.content
+
     def __str__(self):
         return self.title
     
