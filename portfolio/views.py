@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from .models import ContactMessage
 from .forms import ContactForm
@@ -8,6 +8,11 @@ from blog.models import BlogPost
 from .models import TeamMember
 from django.contrib import messages
 from collections import defaultdict
+from django.utils import timezone
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.core.mail import send_mail
+from django.views import View
 
 # portfolio/views.py
 
@@ -82,5 +87,3 @@ class ContactView(CreateView):
         messages.success(self.request, 'Proposal received. Our team will get back to you shortly.')
         return response
 
-    
-    

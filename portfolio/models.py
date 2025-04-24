@@ -9,9 +9,13 @@ class ContactMessage(models.Model):
     message = models.TextField()
     document = models.FileField(upload_to='contact_docs/', blank=True, null=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
+    replied = models.BooleanField(default=False)
+    reply_message = models.TextField(blank=True, null=True)
+    replied_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f"Message from {self.name} ({self.email})"
+
     
 
 # models.py
