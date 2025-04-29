@@ -212,5 +212,21 @@
             </aside><!--//blog-side-bar-->
         </div><!--//row-->
     </div><!--//blog-->
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {% endblock %}
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+        Swal.fire({
+            icon: 'success',
+            title: 'Comment Submitted!',
+            text: "{{ message|escapejs }}",
+            confirmButtonColor: '#3085d6',
+        });
+        {% endfor %}
+    </script>
+    {% endif %}
+
+
+{% endblock %}
