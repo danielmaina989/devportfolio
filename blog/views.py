@@ -8,6 +8,7 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.decorators import method_decorator
+from django.db.models import Prefetch
 
 
 class BlogListView(ListView):
@@ -26,7 +27,9 @@ class BlogDetailView(DetailView):
         post = self.get_object()
         context['post'] = self.object
         context['recent_posts'] = BlogPost.objects.order_by('-created_at')[:4]
-        context['top_level_comments'] = post.comments.filter(parent__isnull=True)
+        context['top_level_comments'] = post.comments.filter(parent__isnull=True).prefetch_related(
+    Prefetch('replies', queryset=Comment.objects.order_by('created_at'))
+)
         return context
     
 

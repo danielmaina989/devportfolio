@@ -87,17 +87,12 @@
 
     <!-- Display SweetAlert2 message if any -->
     {% if messages %}
-    <script>
-        {% for message in messages %}
-        Swal.fire({
-            icon: 'success',
-            title: 'Thank you!',
-            text: "{{ message|escapejs }}",
-            confirmButtonColor: '#3085d6',
-        });
-        {% endfor %}
-    </script>
-    {% endif %}
+    {% for message in messages %}
+      <div id="swal-message" data-context="contact" data-message="{{ message|escapejs }}"></div>
+    {% endfor %}
+  {% endif %}
+
+<script src="{%static 'js/custom.js'%}"></script>
 </body>
 
 

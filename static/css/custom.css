@@ -20,3 +20,17 @@
     border-top-right-radius: 5px; /* Optional: match the rounded corners of the item */
 }
 
+.custom-reply-toggle {
+    border-color: #6c757d;
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.custom-reply-toggle:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+
