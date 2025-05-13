@@ -24,12 +24,13 @@ class BlogDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        post = self.get_object()
-        context['post'] = self.object
-        context['recent_posts'] = BlogPost.objects.order_by('-created_at')[:4]
-        context['top_level_comments'] = post.comments.filter(parent__isnull=True).prefetch_related(
-    Prefetch('replies', queryset=Comment.objects.order_by('created_at'))
-)
+        post = self.object
+        context.update({
+            'top_level_comments': post.comments.filter(parent__isnull=True)
+                                               .prefetch_related(Prefetch('replies', queryset=Comment.objects.order_by('created_at'))),
+            'recent_posts': BlogPost.objects.order_by('-created_at')[:4],
+        })
+        
         return context
     
 

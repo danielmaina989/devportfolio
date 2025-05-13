@@ -48,11 +48,7 @@
 
                     {{ post.content|safe }}
 
-                    <p class="video-container ratio ratio-16x9 mt-5">
-                        <iframe src="//player.vimeo.com/video/81676731?color=ffffff&amp;wmode=transparent"
-                            width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen
-                            allowfullscreen></iframe>
-                    </p>
+                    
                 </div>
 
                 <nav class="post-nav">
@@ -164,7 +160,7 @@
                 <div class="comment-form-container">
                     <h3 class="title">Leave a comment</h3>
 
-                    {% if form.errors %}
+                {% if form.errors %}
                     <div class="alert alert-danger">
                         <ul>
                             {% for field in form %}
@@ -177,42 +173,44 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    {% endif %}
+                {% endif %}
 
-                    <form id="comment-form" class="comment-form form" method="post"
-                        action="{% url 'blog:add_comment' post.slug %}">
-                        {% csrf_token %}
+                <form id="comment-form" class="comment-form form" method="post"
+                    action="{% url 'blog:add_comment' post.slug %}">
+                    {% csrf_token %}
 
-                        <div style="display:none;">
-                            <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
+                    <div style="display:none;">
+                        <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6 col-12">
+                            <input type="text" class="form-control" id="cname" name="name" placeholder="Name"
+                                autocomplete="name" minlength="2" required>
                         </div>
-
-                        <div class="row g-3">
-                            <div class="col-md-6 col-12">
-                                <label for="cname" class="form-label visually-hidden">Name</label>
-                                <input type="text" class="form-control" id="cname" name="name" placeholder="Name"
-                                    autocomplete="name" minlength="2" required>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <label for="cemail" class="form-label visually-hidden">Email</label>
-                                <input type="email" class="form-control" id="cemail" name="email"
-                                    placeholder="Email" autocomplete="email" required>
-                            </div>
-                            <div class="col-12">
-                                <label for="cwebsite" class="form-label visually-hidden">Website</label>
-                                <input type="url" class="form-control" id="cwebsite" name="website"
-                                    placeholder="Website" autocomplete="url">
-                            </div>
-                            <div class="col-12">
-                                <label for="ccomment" class="form-label visually-hidden">Comment</label>
-                                <textarea class="form-control" id="ccomment" name="body"
+                        <div class="col-md-6 col-12">
+                            <input type="email" class="form-control" id="cemail" name="email"
+                                placeholder="Email" autocomplete="email" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="url" class="form-control" id="cwebsite" name="website"
+                                placeholder="Website" autocomplete="url">
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" id="ccomment" name="body"
                                     placeholder="Leave your comment" rows="12" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-cta btn-cta-secondary">Submit Comment</button>
-                            </div>
                         </div>
-                    </form>
+
+                            <!-- 🔐 CAPTCHA FIELD -->
+                            <div class="col-12">
+                                {{ form.captcha }}
+                            </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-cta btn-cta-secondary">Submit Comment</button>
+                        </div>
+                    </div>
+                </form>
                 </div>
             </article>
         </div>
@@ -236,11 +234,12 @@
                 <ul class="list-unstyled">
                     {% for post in recent_posts %}
                     <li>
-                        <img class="thumb img-fluid" src="{{ post.image.url|default:'path/to/default/image.jpg' }}"
-                            alt="{{ post.title }}" />
+                        <img class="thumb img-fluid"
+                            src="{% if post.image %}{{ post.image.url }}{% else %}/static/images/default.jpg{% endif %}"
+                            alt=" {{ post.title } ">
+                            
                         <span class="post-info">
-                            <a class="post-title" href="{% url 'blog:blog_detail' post.slug %}">{{ post.title
-                                }}</a><br />
+                            <a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title }}</a><br>
                             <span class="date">{{ post.created_at|date:"d M" }}</span>
                         </span>
                     </li>
@@ -270,14 +269,18 @@
     </div><!--//row-->
     </div><!--//blog-->
     <!-- Include SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <!-- Add this if not already present -->
+      
+
+
 
     {% if messages %}
     {% for message in messages %}
     <div id="swal-message" data-context="comment" data-message="{{ message|escapejs }}"></div>
     {% endfor %}
     {% endif %}
-    <script src="{%static 'js/custom.js'%}"></script>
+
+
 
 
     {% endblock %}

@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import BlogPost, Comment
-
-
+from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(BlogPost)
-class BlogPostAdmin(admin.ModelAdmin):
+class BlogPostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     list_display = ('title', 'author', 'created_at', 'published')
     list_filter = ('published', 'created_at')
     search_fields = ('title', 'content')

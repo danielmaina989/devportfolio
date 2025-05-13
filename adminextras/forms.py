@@ -1,6 +1,8 @@
 from django import forms
 
+
 class ReplyForm(forms.Form):
+    
     subject = forms.CharField(
         max_length=255,
         label="Email Subject",
