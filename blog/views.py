@@ -9,6 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.db.models import Prefetch
+from django.views.generic.edit import FormMixin
+
 
 
 class BlogListView(ListView):
@@ -17,10 +19,14 @@ class BlogListView(ListView):
     context_object_name = 'posts'
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(FormMixin, DetailView):
     model = BlogPost
     template_name = 'blog/blog_detail.html'
     context_object_name = 'post'
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,6 +38,21 @@ class BlogDetailView(DetailView):
         })
         
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()  # Important to call it here
+        form = self.get_form()
+        if form.is_valid():
+            if self.request.POST.get('honeypot'):
+                return self.form_invalid(form)
+            form.instance.post = self.object
+            if self.request.user.is_authenticated:
+                form.instance.user = self.request.user
+            form.save()
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     
 
 class AddCommentView(CreateView):
@@ -40,23 +61,31 @@ class AddCommentView(CreateView):
     template_name = 'blog/blog_detail.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.post_instance = BlogPost.objects.get(slug=self.kwargs['slug'])
+        self.post_instance = get_object_or_404(BlogPost, slug=self.kwargs['slug'])
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        if self.request.POST.get('honeypot'):
+            return self.form_invalid(form)
         form.instance.post = self.post_instance
+        if self.request.user.is_authenticated:
+            form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post'] = self.post_instance
         context['recent_posts'] = BlogPost.objects.order_by('-created_at')[:4]
         context['top_level_comments'] = self.post_instance.comments.filter(parent__isnull=True)
-        context['form'] = self.get_form()  # in case template expects `form` (like {{ form.as_p }})
         return context
 
     def get_success_url(self):
         return self.post_instance.get_absolute_url()
+
 
 
 class ReplyCommentView(LoginRequiredMixin, View):

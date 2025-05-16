@@ -87,6 +87,42 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleCommentsBtn = document.getElementById('toggle-comments');
+    const moreCommentsDiv = document.getElementById('more-comments');
+
+    if (toggleCommentsBtn && moreCommentsDiv) {
+        toggleCommentsBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (moreCommentsDiv.style.display === 'none') {
+                moreCommentsDiv.style.display = 'block';
+                toggleCommentsBtn.textContent = 'Hide comments';
+            } else {
+                moreCommentsDiv.style.display = 'none';
+                toggleCommentsBtn.textContent = 'Show all comments';
+            }
+        });
+    }
+
+    // Same for replies toggle
+    const replyButtons = document.querySelectorAll('.toggle-replies');
+    replyButtons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const commentId = this.dataset.id;
+            const repliesDiv = document.getElementById('more-replies-' + commentId);
+            if (repliesDiv.style.display === 'none') {
+                repliesDiv.style.display = 'block';
+                this.textContent = 'Hide replies';
+            } else {
+                repliesDiv.style.display = 'none';
+                this.textContent = 'Show all replies';
+            }
+        });
+    });
+});
+
+
 
 
 

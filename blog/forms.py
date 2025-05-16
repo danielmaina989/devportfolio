@@ -7,7 +7,10 @@ class CommentForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     class Meta:
         model = Comment
-        fields = ['name', 'email', 'website', 'body']
+        fields = ['name', 'email', 'website', 'body', 'captcha']
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Leave a comment...'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'website': forms.URLInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'rows': 12}),
         }

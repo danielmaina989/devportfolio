@@ -1,0 +1,59 @@
+{# blog/partials/comment_form.html #}
+{% load widget_tweaks %}
+
+<form id="comment-form" class="comment-form form mt-2" method="post" action="{% url 'blog:add_comment' post.slug %}">
+
+  {% csrf_token %}
+
+  <div style="display:none;">
+    <input type="text" name="honeypot" tabindex="-1" autocomplete="off">
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        {{ form.website.label_tag }}
+        {{ form.website }}
+        {{ form.website.errors }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        {{ form.body.label_tag }}
+        {{ form.body }}
+        {{ form.body.errors }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        {{ form.captcha }}
+        {{ form.captcha.errors }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+        <label class="form-check-label" for="terms">
+          I agree to the <a href="/terms-and-conditions" target="_blank">terms and conditions</a>.
+        </label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-cta btn-cta-secondary">Submit Comment</button>
+    </div>
+  </div>
+</form>

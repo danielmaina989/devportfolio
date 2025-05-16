@@ -49,6 +49,7 @@ INSTALLED_APPS = [
      'adminextras',
      'django_summernote',
      'django_recaptcha',
+     'widget_tweaks',
 ]
 
 MIDDLEWARE = [
