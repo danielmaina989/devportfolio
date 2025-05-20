@@ -17,6 +17,7 @@ class BlogListView(ListView):
     model = BlogPost
     template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
+    paginate_by = 5
 
 
 class BlogDetailView(FormMixin, DetailView):

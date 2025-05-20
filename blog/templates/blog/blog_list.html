@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load blog_tags %}
 {%load static%}
 {% block title %}Blog{% endblock %}
 {% block layout %}
@@ -50,7 +51,9 @@
                         
                         <div class="content">
                             <div class="desc">
-                                <p>{{ post.content|truncatechars:200 }}</p>
+                                {{ post.get_excerpt|safe }}
+                                
+
                                 <a class="text-link" href="{% url 'blog:blog_detail' slug=post.slug %}">
                                     Read more <i class="fas fa-long-arrow-alt-right"></i>
                                 </a>
@@ -62,26 +65,56 @@
             {% endfor %}
             
                 <div class="pagination-container text-center">
-                    <ul class="pagination justify-content-center">
+            {% if is_paginated %}
+                <ul class="pagination justify-content-center">
+
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    {% else %}
                         <li class="page-item disabled">
                             <a class="page-link" href="#">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="#">1<span class="sr-only">(current)</span></a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    {% endif %}
+
+                    {% for num in paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ num }} <span class="sr-only">(current)</span></a>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
                         <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
                             <a class="page-link" href="#">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </li>
-                    </ul><!--//pagination-->
-                </div><!--//pagination-container-->       
+                    {% endif %}
+
+                </ul>
+            {% endif %}
+        </div>
             </article><!--//item-->
         </div><!--//container-->
     </section><!--//blog-list--> 

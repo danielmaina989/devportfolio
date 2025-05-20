@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
 from django.contrib.auth.models import User
 from django.urls import reverse
-
 
 class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -13,16 +14,17 @@ class BlogPost(models.Model):
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     published = models.BooleanField(default=False)
 
-
-    def get_excerpt(self, length=150):
-        """Return a truncated version of the content."""
-        return self.content[:length] + '...' if len(self.content) > length else self.content
+    def get_excerpt(self, word_count=30):
+        """Return a plain text excerpt truncated to a number of words."""
+        plain_text = strip_tags(self.content)
+        return Truncator(plain_text).words(word_count, truncate='...')
 
     def __str__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return reverse('blog:blog_detail', kwargs={'slug': self.slug})
+
 
 class Comment(models.Model):
     post = models.ForeignKey(BlogPost, related_name="comments", on_delete=models.CASCADE)
