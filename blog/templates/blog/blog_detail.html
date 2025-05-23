@@ -76,7 +76,7 @@
                                 {% endif %}
 
                                 {% if top_level_comments %}
-                                    {% for comment in top_level_comments|slice:":3" %}
+                                    {% for comment in top_level_comments %}
                                         <div class="comment-item depth-1 parent">
                                             <div class="comment-item-box rounded">
                                                 <div class="comment-body">
@@ -138,16 +138,41 @@
                                             {% endif %}
                                         </div>
                                     {% endfor %}
-                                    <a href="#" id="toggle-comments" class="btn btn-sm mt-2"
-                                    style="background-color:#f0f0f0; color:#333; border:1px solid #ccc;">
-                                        Show all comments
-                                    </a>
+                                    
                                 {% else %}
                                     <p>No comments yet. Be the first to comment!</p>
                                 {% endif %}
                             </div>
                         </div>
+                        <div class="pagination mt-3">
+                            {% if top_level_comments.has_other_pages %}
+                                <nav>
+                                    <ul class="pagination">
+                                        {% if top_level_comments.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ top_level_comments.previous_page_number }}">&laquo; Previous</a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% for num in top_level_comments.paginator.page_range %}
+                                            {% if top_level_comments.number == num %}
+                                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                            {% elif num > top_level_comments.number|add:'-3' and num < top_level_comments.number|add:'3' %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if top_level_comments.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ top_level_comments.next_page_number }}">Next &raquo;</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
+                        </div>
                     </div>
+
 
                     <div class="comment-form-container mt-3">
                         <h3 class="title">Leave a comment</h3>

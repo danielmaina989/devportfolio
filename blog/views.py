@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.db.models import Prefetch
 from django.views.generic.edit import FormMixin
+from django.core.paginator import Paginator
+
 
 
 
@@ -18,6 +20,8 @@ class BlogListView(ListView):
     template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
     paginate_by = 5
+
+
 
 
 class BlogDetailView(FormMixin, DetailView):
@@ -32,16 +36,25 @@ class BlogDetailView(FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.object
+
+        # Get top-level comments with replies prefetched
+        top_level_comments_qs = post.comments.filter(parent__isnull=True).prefetch_related(
+            Prefetch('replies', queryset=Comment.objects.order_by('created_at'))
+        ).order_by('-created_at')
+
+        # Pagination logic
+        paginator = Paginator(top_level_comments_qs, 5)  # Show 5 comments per page
+        page_number = self.request.GET.get('page')
+        top_level_comments_page = paginator.get_page(page_number)
+
         context.update({
-            'top_level_comments': post.comments.filter(parent__isnull=True)
-                                               .prefetch_related(Prefetch('replies', queryset=Comment.objects.order_by('created_at'))),
+            'top_level_comments': top_level_comments_page,
             'recent_posts': BlogPost.objects.order_by('-created_at')[:4],
         })
-        
         return context
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()  # Important to call it here
+        self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
             if self.request.POST.get('honeypot'):
