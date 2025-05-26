@@ -33,6 +33,14 @@
     color: #fff;
 }
 
+.fab {
+    color: #007bff;
+    transition: color 0.2s ease;
+}
+.fab:hover {
+    color: #0056b3;
+}
+
 
 
 

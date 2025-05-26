@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Posts in {{ category.name }}</h1>
+
+  {% for post in posts %}
+    <div class="post">
+      <h2><a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title }}</a></h2>
+      <p>{{ post.desc|truncatewords:30 }}</p>
+      <p><a href="{% url 'blog:blog_detail' post.slug %}">Read more</a></p>
+    </div>
+  {% empty %}
+    <p>No posts in this category yet.</p>
+  {% endfor %}
+{% endblock %}

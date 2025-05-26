@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
-from .models import BlogPost, Comment
+from .models import BlogPost, Comment, Category
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm
 from django.urls import reverse_lazy, reverse
@@ -11,15 +11,25 @@ from django.utils.decorators import method_decorator
 from django.db.models import Prefetch
 from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
-
-
-
+from django.db.models import Q
 
 class BlogListView(ListView):
     model = BlogPost
     template_name = 'blog/blog_list.html'
     context_object_name = 'posts'
     paginate_by = 5
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        qs = BlogPost.objects.all().select_related('author', 'category')
+        if query:
+            qs = qs.filter(Q(title__icontains=query) | Q(content__icontains=query))
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 
@@ -33,25 +43,32 @@ class BlogDetailView(FormMixin, DetailView):
     def get_success_url(self):
         return self.object.get_absolute_url()
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.object
 
-        # Get top-level comments with replies prefetched
+        # Top-level comments with replies
         top_level_comments_qs = post.comments.filter(parent__isnull=True).prefetch_related(
             Prefetch('replies', queryset=Comment.objects.order_by('created_at'))
         ).order_by('-created_at')
 
-        # Pagination logic
-        paginator = Paginator(top_level_comments_qs, 5)  # Show 5 comments per page
+        paginator = Paginator(top_level_comments_qs, 5)
         page_number = self.request.GET.get('page')
         top_level_comments_page = paginator.get_page(page_number)
+
+        # Add categories with post counts
+        categories = Category.objects.all()
+        for category in categories:
+            category.posts = category.blog_posts.filter(published=True)
 
         context.update({
             'top_level_comments': top_level_comments_page,
             'recent_posts': BlogPost.objects.order_by('-created_at')[:4],
+            'categories': categories,
         })
         return context
+
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -67,7 +84,25 @@ class BlogDetailView(FormMixin, DetailView):
         else:
             return self.form_invalid(form)
 
-    
+
+
+class CategoryPostListView(ListView):
+    model = BlogPost
+    template_name = 'blog/blog_list.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        return BlogPost.objects.filter(category=self.category)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['selected_category'] = self.category
+        return context
+
+
+
 
 class AddCommentView(CreateView):
     model = Comment

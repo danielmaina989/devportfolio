@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Comment
+from .models import BlogPost, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(BlogPost)
@@ -30,5 +30,14 @@ class CommentAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
         }),
     )
+
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
+
 
 

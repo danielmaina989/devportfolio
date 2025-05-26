@@ -181,55 +181,8 @@
                 </article>
             </div>
 
-            <aside id="blog-sidebar" class="blog-sidebar col-lg-4 col-12 ms-lg-auto">
-                <section class="widget search">
-                    <h3 class="sr-only title">Search Blog</h3>
-                    <form class="search-blog-form row g-1">
-                        <div class="col-auto">
-                            <input type="text" class="form-control" placeholder="Search blog...">
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-cta btn-cta-secondary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </section>
+            {% include 'blog/partials/sidebar.html' %}
 
-                <section class="widget recent-posts">
-                    <h3 class="title">Recent Posts</h3>
-                    <ul class="list-unstyled">
-                        {% for post in recent_posts %}
-                        <li>
-                            <img class="thumb img-fluid" src="{% if post.image %}{{ post.image.url }}{% else %}/static/images/default.jpg{% endif %}" alt="{{ post.title }}">
-                            <span class="post-info">
-                                <a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title }}</a><br>
-                                <span class="date">{{ post.created_at|date:"d M" }}</span>
-                            </span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-
-                <section class="widget categories">
-                    <h3 class="title">Categories</h3>
-                    <ul class="list-unstyled">
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Development</a></li>
-                        <li><a href="#">UX Design</a></li>
-                        <li><a href="#">Freebies</a></li>
-                    </ul>
-                </section>
-
-                <section class="widget archives">
-                    <h3 class="title">Archives</h3>
-                    <ul class="list-unstyled">
-                        <li><a href="#">2023 </a><span class="count">(2)</span></li>
-                        <li><a href="#">2022 </a><span class="count">(12)</span></li>
-                        <li><a href="#">2021 </a><span class="count">(6)</span></li>
-                    </ul>
-                </section>
-            </aside>
         </div>
     </div>
 </body>

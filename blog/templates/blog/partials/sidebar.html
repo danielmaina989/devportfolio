@@ -1,0 +1,49 @@
+<!-- Sidebar column -->
+
+<aside class="sidebar col-lg-4 col-md-12 mt-5 mt-lg-0">
+    <div class="card mb-4">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+            <form method="get" action="{% url 'blog:blog_list' %}">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search posts...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                {% for category in categories %}
+                <li>
+                    <a href="{% url 'blog:category_posts' slug=category.slug %}">
+                        {{ category.name }}
+                    </a>
+                </li>
+                {% empty %}
+                <li>No categories available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Recent Posts</div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                {% for recent in recent_posts %}
+                <li>
+                    <a href="{% url 'blog:blog_detail' slug=recent.slug %}">
+                        {{ recent.title|truncatechars:40 }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</aside>
