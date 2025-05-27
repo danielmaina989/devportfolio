@@ -8,141 +8,140 @@
     <section class="promo section">
         <div class="container text-center">
             <h2 class="title">Welcome to Our Blog</h2>
-            <p class="intro">Dive into a world of insights, stories, and inspiration. Stay updated with the latest trends and ideas!</p>
+            <p class="intro">Dive into a world of insights, stories, and inspiration. Stay updated with the latest
+                trends and ideas!</p>
         </div>
     </section>
 </div>
 
-<section id="blog-list" class="blog-list section">
-    <div class="container">
-        <div class="row">
-            <!-- Blog posts column -->
-            <div class="col-lg-8 col-md-8 col-12">
-                {% for post in posts %}
-                <article class="item mb-5">
-                    <div class="row">
-                        <h3 class="post-title col-lg-10 col-md-9 col-12 ms-md-auto">
-                            <a href="{% url 'blog:blog_detail' slug=post.slug %}">
-                                {{ post.title }}
+
+<div class="blog-post-wrapper container">
+    <div class="row gx-5">
+
+        <!-- Main blog posts list -->
+        <div class="blog-entry col-lg-8 col-12">
+            {% for post in posts %}
+            <article class="post mb-5">
+                <h3 class="post-title">
+                    <a href="{% url 'blog:blog_detail' slug=post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h3>
+
+                <div class="meta mb-2">
+                    <ul class="meta-list list-inline">
+                        <li class="list-inline-item">
+                            <i class="fas fa-calendar"></i> {{ post.created_at|date:"d M, Y" }}
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fas fa-user"></i> {{ post.author.get_full_name|default:"Admin" }}
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fas fa-comments"></i>
+                            <a href="{% url 'blog:blog_detail' slug=post.slug %}#comment-area">
+                                {{ post.comments.count|default:"0" }} Comments
                             </a>
-                        </h3>
-                        <div class="w-100"></div>
-                        <div class="meta col-lg-2 col-md-3 col-12 text-right">
-                            <ul class="meta-list list-unstyled">
-                                <li class="post-time post_date date updated rounded">
-                                    <span class="date">{{ post.created_at|date:"d" }}</span>
-                                    <span class="month">{{ post.created_at|date:"M" }}</span>
-                                </li>
-                                <li class="post-author">
-                                    <a href="#">{{ post.author.get_full_name|default:"Admin" }}</a>
-                                </li>
-                                <li class="post-comments-link">
-                                    Comments: <a href="{% url 'blog:blog_detail' slug=post.slug %}#comment-area">
-                                        {{ post.comments.count|default:"0" }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        </li>
+                    </ul>
+                </div>
 
-                        <div class="content-wrapper col-lg-10 col-md-9 col-12">
-                            <figure class="figure" style="height: 300px;">
-                                <img src="{{ post.image.url }}" class="img-fluid w-100 h-100 object-fit-cover"
-                                    alt="{{ post.title }}">
-                            </figure>
+                <div class="content-wrapper">
+                    <figure class="post-figure mb-3">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" class="img-fluid w-100 rounded" alt="{{ post.title }}">
+                        {% else %}
+                        <img src="{% static 'assets/images/blog/blog-1.jpg' %}" class="img-fluid w-100 rounded"
+                            alt="Default">
+                        {% endif %}
+                    </figure>
 
-                            {% if post.category %}
-                                <div class="mt-2">
-                                    <span class="badge bg-primary text-light">
-                                        <i class="fas fa-tag me-1"></i>
-                                        <a href="{% url 'blog:category_posts' slug=post.category.slug %}" class="text-light text-decoration-none">
-                                            {{ post.category.name }}
-                                        </a>
-                                    </span>
-                                </div>
-                            {% endif %}
-
-                            <div class="content">
-                                <div class="desc">
-                                    {{ post.get_excerpt|safe }}
-                                    <a class="text-link" href="{% url 'blog:blog_detail' slug=post.slug %}">
-                                        Read more <i class="fas fa-long-arrow-alt-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Share buttons -->
-                            <div class="mt-3">
-                                <span class="text-muted">Share:</span>
-                                {% absolute_url post.get_absolute_url as full_url %}
-                                <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ full_url }}" target="_blank" class="me-2">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ full_url }}" target="_blank" class="me-2">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ full_url }}&title={{ post.title|urlencode }}" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </div>
-                        </div>
+                    {% if post.category %}
+                    <div class="mb-2">
+                        <span class="badge bg-primary text-light">
+                            <i class="fas fa-tag me-1"></i>
+                            <a href="{% url 'blog:category_posts' slug=post.category.slug %}"
+                                class="text-light text-decoration-none">
+                                {{ post.category.name }}
+                            </a>
+                        </span>
                     </div>
-                </article>
-                {% endfor %}
-
-                <!-- Pagination -->
-                <div class="pagination-container text-center">
-                    {% if is_paginated %}
-                        <ul class="pagination justify-content-center">
-                            {% if page_obj.has_previous %}
-                                <li class="page-item"></li>
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"></a>
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <span class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </span>
-                                </li>
-                            {% endif %}
-
-                            {% for num in paginator.page_range %}
-                                {% if page_obj.number == num %}
-                                    <li class="page-item active">
-                                        <span class="page-link">{{ num }}</span>
-                                    </li>
-                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-
-                            {% if page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <span class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </span>
-                                </li>
-                            {% endif %}
-                        </ul>
                     {% endif %}
-                </div></li>
+
+                    <div class="desc">
+                        {{ post.get_excerpt|safe }}
+                        <a class="text-link d-inline-block mt-2" href="{% url 'blog:blog_detail' slug=post.slug %}">
+                            Read more <i class="fas fa-long-arrow-alt-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="mt-3">
+                        <span class="text-muted">Share:</span>
+                        {% absolute_url post.get_absolute_url as full_url %}
+                        <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ full_url }}"
+                            target="_blank" class="me-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ full_url }}" target="_blank"
+                            class="me-2">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+
+            <!-- Pagination -->
+            <div class="pagination-container text-center">
+                {% if is_paginated %}
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"></li>
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"></a>
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </span>
+                    </li>
+                    {% endif %}
+
+                    {% for num in paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </span>
+                        </li>
+                        {% endif %}
+                </ul>
+                {% endif %}
             </div>
-
-            <!-- Sidebar column -->
-             {% include "blog/partials/sidebar.html" %}
-             
-
+            </li>
         </div>
+
+        <!-- Sidebar -->
+        {% include 'blog/partials/sidebar.html' %}
+
     </div>
-</section>
+</div>
 
 {% endblock %}

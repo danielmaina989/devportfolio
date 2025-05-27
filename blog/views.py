@@ -29,9 +29,8 @@ class BlogListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['recent_posts'] = BlogPost.objects.order_by('-created_at')[:4]
         return context
-
-
 
 
 class BlogDetailView(FormMixin, DetailView):
@@ -88,19 +87,20 @@ class BlogDetailView(FormMixin, DetailView):
 
 class CategoryPostListView(ListView):
     model = BlogPost
-    template_name = 'blog/blog_list.html'
-    context_object_name = 'posts'
+    template_name = "blog/blog_list.html"
+    context_object_name = "posts"
     paginate_by = 5
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        return BlogPost.objects.filter(category=self.category)
+        return BlogPost.objects.filter(category=self.category).order_by('-created_at')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['selected_category'] = self.category
+        context['category'] = self.category
+        context['recent_posts'] = BlogPost.objects.order_by('-created_at')[:5]
+        context['categories'] = Category.objects.all()
         return context
-
 
 
 

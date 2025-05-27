@@ -1,6 +1,5 @@
-<!-- Sidebar column -->
-
-<aside class="sidebar col-lg-4 col-md-12 mt-5 mt-lg-0">
+<aside class="sidebar col-lg-4 col-md-12 mt-5 mt-lg-0 g-2">
+    <!-- Search -->
     <div class="card mb-4">
         <div class="card-header">Search</div>
         <div class="card-body">
@@ -15,10 +14,35 @@
         </div>
     </div>
 
+    <!-- Recent Posts with thumbnails -->
+    <div class="card mb-4">
+        <div class="card-header">Recent Posts</div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                {% for recent in recent_posts %}
+                <li class="d-flex mb-2">
+                    {% if recent.image %}
+                    <img src="{{ recent.image.url }}" alt="{{ recent.title }}" class="me-2 rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                    {% endif %}
+                    <div class="small">
+                        <a href="{% url 'blog:blog_detail' slug=recent.slug %}">
+                            {{ recent.title|truncatechars:40 }}
+                        </a><br>
+                        <span class="text-muted">{{ recent.created_at|date:"d M Y" }}</span>
+                    </div>
+                </li>
+                {% empty %}
+                <li>No recent posts found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Categories -->
     <div class="card mb-4">
         <div class="card-header">Categories</div>
         <div class="card-body">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled mb-0">
                 {% for category in categories %}
                 <li>
                     <a href="{% url 'blog:category_posts' slug=category.slug %}">
@@ -32,18 +56,6 @@
         </div>
     </div>
 
-    <div class="card mb-4">
-        <div class="card-header">Recent Posts</div>
-        <div class="card-body">
-            <ul class="list-unstyled">
-                {% for recent in recent_posts %}
-                <li>
-                    <a href="{% url 'blog:blog_detail' slug=recent.slug %}">
-                        {{ recent.title|truncatechars:40 }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <!-- Archives -->
+    
 </aside>
