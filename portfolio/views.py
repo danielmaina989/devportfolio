@@ -23,7 +23,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Get the latest 4 blog posts, ordered by the 'created_at' field
-        context['latest_blog_posts'] = BlogPost.objects.all().order_by('-created_at')[:4]
+        context['latest_blog_posts'] = BlogPost.objects.all().order_by('-created_at')[:3]
         return context
 
 

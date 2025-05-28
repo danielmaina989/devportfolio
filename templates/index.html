@@ -392,8 +392,8 @@
             {% for post in latest_blog_posts %}
             <div class="item col-xl-4 col-md-6 col-12">
                 <div class="item-inner rounded">
-                    <figure class="figure rounded-top">
-                        <a href="{% url 'blog:blog_detail' post.id %}">
+                    <figure class="figure rounded-top overflow-hidden mb-0">
+                            <a href="{% url 'blog:blog_detail' post.id %}">
                             <img class="img-fluid blog-index-img" src="{{ post.image.url }}" alt="{{ post.title }}">
                         </a>
                     </figure>
